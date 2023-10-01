@@ -1,0 +1,11 @@
+{
+  "name": "pixel-art-editor",
+  "version": "1.0.0",
+  "description": "Mini pixel art editor with restricted palette",
+  "main": "index.js",
+  "author": "lopis",
+  "license": "MIT",
+  "scripts": {
+    "dev": "python3 -m http.server 3000"
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Pixelart Editor</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+</head>
+<body>
+  <div class="library">
+    <div class="palette" id="palette">
+      <label class="color">
+        <input type="radio" name="brush-color" checked>
+        <span class="radio"></span>
+        <input id="0" type="color" value="#111111">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="1" type="color" value="#ffffff">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="2" type="color" value="#888888">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="3" type="color" value="#ee1111">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="4" type="color" value="#11ee11">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="5" type="color" value="#1111ee">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="6" type="color" value="#11eeee">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="7" type="color" value="#eeee11">
+        <span class="color-swatch"></span>
+      </label>
+      <label class="color">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <input id="8" type="hidden" value="">
+        <span class="color-swatch checkered"></span>
+      </label>
+    </div>
+    <div class="icons"></div>
+  </div>
+  <div class="canvas">
+    <div class="canvas-size">
+      <div>
+        <label for="canvas-size">
+          Canvas Size: <span id="size">8</span>
+        </label>
+      </div>
+      <input id="canvasSize" name="canvas-size" type="range" value="8" min="2" max="32">
+    </div>
+    <div class="canvas-container">
+      <canvas id="canvas" class="checkered"></canvas>
+    </div>
+    <div class="canvas-footer">
+      Created by <a href="https://github.com/lopis">lopis</a>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
