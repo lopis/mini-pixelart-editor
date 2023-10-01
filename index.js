@@ -31,28 +31,35 @@ canvas.addEventListener('mousemove', event => {
   }
 })
 
-canvas.addEventListener('mouseout', event => {
+canvas.addEventListener('mouseout', () => {
   selectedCell = []
 })
 
-canvas.addEventListener('mousedown', event => {
+canvas.addEventListener('mousedown', () => {
   mouseDown = true
   const [row, col] = selectedCell
   canvasGrid[row][col] = selectedColor
 })
 
-canvas.addEventListener('mouseup', event => {
+canvas.addEventListener('mouseup', () => {
   mouseDown = false
+})
+
+document.addEventListener('keydown', ({ key }) => {
+  const color = parseInt(key)
+  if (Number.isInteger(color) && color > 0 && color <= 9) {
+    selectedColor = color - 1
+    document.querySelector(`[data-color="${selectedColor}"] [name="brush-color"]`).checked = true
+  }
 })
 
 palette.addEventListener('input', event => {
   if (event.target.name === 'brush-color') {
-    const colorInput = event.target.parentElement.querySelector('input[type=color]')
-    selectedColor = colorInput ? colorInput.id : 8
+    selectedColor = event.target.parentElement.dataset.color
   } else {
-    const id = event.target.id
-    colorPalette[id] = event.target.value
-    console.log(id, colorPalette);
+    const color = event.target.dataset.color
+    colorPalette[color] = event.target.value
+    console.log(color, colorPalette);
     updatePalette()
   }
 })
@@ -109,7 +116,7 @@ const updatePalette = () => {
 
 const updateSelectedColor = () => [
   selectedColor = document.querySelector('.palette input[type=radio]:checked')
-  .parentElement.querySelector('input[type=color]').id
+  .parentElement.dataset.color
 ]
 
 updateSelectedColor()

@@ -10,60 +10,80 @@
 <body>
   <div class="library">
     <div class="palette" id="palette">
-      <label class="color">
+      <label data-color="0" class="color">
         <input type="radio" name="brush-color" checked>
         <span class="radio"></span>
-        <input id="0" type="color" value="#111111">
+        <span class="hotkey">[1]</span>
+        <input type="color" value="#111111">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="1" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="1" type="color" value="#ffffff">
+        <span class="hotkey">[2]</span>
+        <input type="color" value="#ffffff">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="2" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="2" type="color" value="#888888">
+        <span class="hotkey">[3]</span>
+        <input type="color" value="#888888">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="3" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="3" type="color" value="#ee1111">
+        <span class="hotkey">[4]</span>
+        <input type="color" value="#ee1111">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="4" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="4" type="color" value="#11ee11">
+        <span class="hotkey">[5]</span>
+        <input type="color" value="#11ee11">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="5" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="5" type="color" value="#1111ee">
+        <span class="hotkey">[6]</span>
+        <input type="color" value="#1111ee">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="6" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="6" type="color" value="#11eeee">
+        <span class="hotkey">[7]</span>
+        <input type="color" value="#11eeee">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="7" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="7" type="color" value="#eeee11">
+        <span class="hotkey">[8]</span>
+        <input type="color" value="#eeee11">
         <span class="color-swatch"></span>
       </label>
-      <label class="color">
+      <label data-color="8" class="color">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <input id="8" type="hidden" value="">
+        <span class="hotkey">[9]</span>
+        <div class="filler"></div>
         <span class="color-swatch checkered"></span>
       </label>
+    </div>
+    <div class="actions">
+      <button id="save">
+        Save
+      </button>
+      <button id="clear">
+        Clear
+      </button>
+      <button id="reset">
+        Reset
+      </button>
     </div>
     <div class="icons"></div>
   </div>
