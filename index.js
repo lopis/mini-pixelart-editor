@@ -34,7 +34,9 @@ canvas.addEventListener('mousemove', event => {
 
   if (mouseDown) {
     const [row, col] = selectedCell
-    canvasGrid[row][col] = selectedColor
+    if (canvasGrid[row] != undefined && canvasGrid[row][col] != undefined) {
+      canvasGrid[row][col] = selectedColor
+    }
   }
 })
 
@@ -58,6 +60,10 @@ document.addEventListener('keydown', ({ key }) => {
     selectedColor = color - 1
     document.querySelector(`[data-color="${selectedColor}"] [name="brush-color"]`).checked = true
   }
+
+  if (key == 'Escape') {
+    codeModal.classList.add('hidden')
+  }
 })
 
 palette.addEventListener('input', event => {
@@ -66,8 +72,8 @@ palette.addEventListener('input', event => {
   } else {
     const color = event.target.dataset.color
     colorPalette[color] = event.target.value
-    console.log(color, colorPalette);
     updatePalette()
+    savePalette()
   }
 })
 

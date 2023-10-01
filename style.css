@@ -168,3 +168,50 @@ h2 {
 	top: 16px;
 	right: 16px;
 }
+
+.modal {
+	position: fixed;
+	height: 70vh;
+	width: 80vw;
+	top: 15vh;
+	left: 10vw;
+	background: #151427;
+  z-index: 1;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.overlay {
+  content: "";
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: #00000088;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+pre {
+	background: #333157;
+	padding: 16px;
+  max-height: 55vh;
+  overflow: scroll;
+}
+
+#closeButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 16px;
+	line-height: 1;
+}
+
+#closeButton:hover:not(:active) {
+  background: white;
+  color: #151427;
+  user-select: none;
+}
