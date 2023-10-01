@@ -15,6 +15,13 @@ canvasSize.addEventListener('input', event => {
   updateGrid()
 })
 
+canvasSize.addEventListener('update', event => {
+  event.preventDefault();
+  size.innerHTML = event.target.value
+  cellSize = Math.floor(HEIGHT / canvasSize.value)
+  updateGrid(false)
+})
+
 canvas.addEventListener('mousemove', event => {
   const { clientX, clientY } = event
   const { offsetLeft, offsetTop } = event.target
@@ -93,11 +100,14 @@ const initCanvas = () => {
   requestAnimationFrame(initCanvas)
 }
 
-const updateGrid = () => {
-  for(let col = 0; col < canvasSize.value; col++) {
-    canvasGrid.push([])
-    for(let row = 0; row < canvasSize.value; row++) {
-      canvasGrid[col][row] = 8
+const updateGrid = (resetGrid = true) => {
+  if (resetGrid) {
+    canvasGrid = []
+    for(let col = 0; col < canvasSize.value; col++) {
+      canvasGrid.push([])
+      for(let row = 0; row < canvasSize.value; row++) {
+        canvasGrid[col][row] = 8
+      }
     }
   }
   canvas.height = canvasSize.value * cellSize

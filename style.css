@@ -26,6 +26,7 @@ a, a[visited] {
 
 .canvas-size, .canvas-footer {
   padding: 16px;
+  width: 80%;
 }
 
 .canvas-container {
@@ -61,7 +62,7 @@ input[type=color], .filler {
   top: 0;
 }
 
-.color {
+.label {
   position: relative;
 	display: flex;
 	background: #262343;
@@ -72,6 +73,7 @@ input[type=color], .filler {
 	height: 40px;
 	align-items: center;
   overflow: hidden;
+  user-select: none;
 }
 
 input[type=radio] {
@@ -106,18 +108,63 @@ input[type=radio]:checked + .radio {
   gap: 4px;
 }
 
-.actions button {
+button {
 	flex-grow: 1;
 	background: #1f1d36;
 	border: none;
 	color: #ffffffDD;
-	padding: 8px 0;
+	padding: 8px;
 	border: 1px solid;
 	border-radius: 5px;
+}
+
+button:hover:not(:active) {
+	background: #ffffffDD;
+	color: #1f1d36;
 }
 
 .hotkey {
 	flex-grow: 1;
 	text-align: center;
 	color: #7b6fee;
+}
+
+#filename {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	background: none;
+	border: none;
+	color: currentColor;
+}
+
+h2 {
+	margin-bottom: 0;
+	color: #7b6fee;
+	font-weight: normal;
+}
+
+.icon-delete {
+	line-height: 40px;
+	width: 40px;
+  flex-shrink: 0;
+	text-align: center;
+  color: #7b6fee;
+}
+
+.icon-delete:hover {
+  background-color: white;
+  color: #262343;
+}
+
+.filename {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+#generate {
+	position: fixed;
+	top: 16px;
+	right: 16px;
 }
