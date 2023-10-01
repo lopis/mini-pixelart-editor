@@ -55,9 +55,10 @@ canvas.addEventListener('mouseup', () => {
 })
 
 document.addEventListener('keydown', ({ key }) => {
-  const color = parseInt(key)
-  if (Number.isInteger(color) && color > 0 && color <= 9) {
-    selectedColor = color - 1
+  const keystr = 'cqweasdzx'
+  let color = isNaN(key) ? keystr.indexOf(key) : parseInt(key)
+  if (Number.isInteger(color) && color >= 0 && color <= 8) {
+    selectedColor = color
     document.querySelector(`[data-color="${selectedColor}"] [name="brush-color"]`).checked = true
   }
 

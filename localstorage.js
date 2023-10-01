@@ -69,7 +69,8 @@ const loadPalette = () => {
   if (data.length === 8) {
     colorPalette = []
     data.forEach((color, i) => {
-      const label = document.querySelector(`[data-color="${i}"]`)
+      const index = i + 1
+      const label = document.querySelector(`[data-color="${index}"]`)
       label.querySelector('[type="color"]').value = color
       colorPalette.push(color)
       label.querySelector('.color-swatch').style.color = color

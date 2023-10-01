@@ -11,66 +11,93 @@
   <div class="library">
     <h2>Color Palette</h2>
     <div class="palette" id="palette">
-      <label data-color="0" class="label">
+      <label data-color="1" class="label">
         <input type="radio" name="brush-color" checked>
         <span class="radio"></span>
-        <span class="hotkey">[1]</span>
+        <span class="hotkey">
+          <code>1</code>
+          <code>q</code>
+        </span>
         <input type="color" value="#111111">
-        <span class="color-swatch"></span>
-      </label>
-      <label data-color="1" class="label">
-        <input type="radio" name="brush-color">
-        <span class="radio"></span>
-        <span class="hotkey">[2]</span>
-        <input type="color" value="#ffffff">
         <span class="color-swatch"></span>
       </label>
       <label data-color="2" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[3]</span>
-        <input type="color" value="#888888">
+        <span class="hotkey">
+          <code>2</code>
+          <code>w</code>
+        </span>
+        <input type="color" value="#ffffff">
         <span class="color-swatch"></span>
       </label>
       <label data-color="3" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[4]</span>
-        <input type="color" value="#ee1111">
+        <span class="hotkey">
+          <code>3</code>
+          <code>e</code>
+        </span>
+        <input type="color" value="#888888">
         <span class="color-swatch"></span>
       </label>
       <label data-color="4" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[5]</span>
-        <input type="color" value="#11ee11">
+        <span class="hotkey">
+          <code>4</code>
+          <code>a</code>
+        </span>
+        <input type="color" value="#ee1111">
         <span class="color-swatch"></span>
       </label>
       <label data-color="5" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[6]</span>
-        <input type="color" value="#1111ee">
+        <span class="hotkey">
+          <code>5</code>
+          <code>s</code>
+        </span>
+        <input type="color" value="#11ee11">
         <span class="color-swatch"></span>
       </label>
       <label data-color="6" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[7]</span>
-        <input type="color" value="#11eeee">
+        <span class="hotkey">
+          <code>6</code>
+          <code>d</code>
+        </span>
+        <input type="color" value="#1111ee">
         <span class="color-swatch"></span>
       </label>
       <label data-color="7" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[8]</span>
-        <input type="color" value="#eeee11">
+        <span class="hotkey">
+          <code>7</code>
+          <code>z</code>
+        </span>
+        <input type="color" value="#11eeee">
         <span class="color-swatch"></span>
       </label>
       <label data-color="8" class="label">
         <input type="radio" name="brush-color">
         <span class="radio"></span>
-        <span class="hotkey">[9]</span>
+        <span class="hotkey">
+          <code>8</code>
+          <code>x</code>
+        </span>
+        <input type="color" value="#eeee11">
+        <span class="color-swatch"></span>
+      </label>
+      <label data-color="0" class="label">
+        <input type="radio" name="brush-color">
+        <span class="radio"></span>
+        <span class="hotkey">
+          <code>0</code>
+          <code>c</code>
+        </span>
         <div class="filler"></div>
         <span class="color-swatch checkered"></span>
       </label>
@@ -105,7 +132,12 @@
       <canvas id="canvas" class="checkered"></canvas>
     </div>
     <div class="canvas-footer">
-      Created by <a href="https://github.com/lopis">lopis</a>
+      <span>
+        Created by <a href="https://github.com/lopis">lopis</a>
+      </span>
+      <span>
+        <a href="https://github.com/lopis/mini-pixelart-editor">Source code</a>
+      </span>
     </div>
   </div>
   <button id="generate">Generate code</button>

@@ -126,7 +126,12 @@ button:hover:not(:active) {
 .hotkey {
 	flex-grow: 1;
 	text-align: center;
-	color: #7b6fee;
+}
+code {
+  background: #4b467a;
+  padding: 0 4px;
+  color: #000;
+  border-radius: 3px;
 }
 
 #filename {
