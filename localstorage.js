@@ -66,7 +66,7 @@ const savePalette = () => {
 
 const loadPalette = () => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_PALETTE) || '[]')
-  if (data.length === 8) {
+  if (data.length === 9) {
     colorPalette = []
     data.forEach((color, i) => {
       const index = i + 1
