@@ -36,6 +36,10 @@ icons.addEventListener('click', event => {
   }
 })
 
+reset.addEventListener('click', () => {
+  resetPalette();
+})
+
 const renderSavedFiles = () => {
   let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
   let html = ''
@@ -69,13 +73,33 @@ const loadPalette = () => {
   if (data.length === 9) {
     colorPalette = []
     data.forEach((color, i) => {
-      const index = i + 1
-      const label = document.querySelector(`[data-color="${index}"]`)
-      label.querySelector('[type="color"]').value = color
-      colorPalette.push(color)
-      label.querySelector('.color-swatch').style.color = color
+      if (color === null) {
+        colorPalette.push(null)
+      } else {
+        const label = document.querySelector(`[data-color="${i}"]`)
+        label.querySelector('[type="color"]').value = color
+        colorPalette.push(color)
+        label.querySelector('.color-swatch').style.color = color
+      }
     })
+  } else {
+    resetPalette()
   }
+}
+
+const resetPalette = () => {
+  localStorage.setItem(LOCALSTORAGE_PALETTE, JSON.stringify([
+    null,
+    "#1c130a",
+    "#f0ebea",
+    "#939190",
+    "#0f1945",
+    "#376ed6",
+    "#5d8f24",
+    "#eda20c",
+    "#eb6320",
+  ]))
+  loadPalette();
 }
 
 const loadFirstFile = () => {

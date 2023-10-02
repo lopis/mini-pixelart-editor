@@ -96,6 +96,10 @@ palette.addEventListener('input', event => {
   }
 })
 
+clear.addEventListener('click', () => {
+  updateGrid()
+})
+
 const drawGrid = () => {
   const size = canvasSize.value;
   for(let col = 0; col < size; col++) {

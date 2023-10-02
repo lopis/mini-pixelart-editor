@@ -1,9 +1,18 @@
+:root {
+  --black: #151427;
+  --dark: #1F1D36;
+  --medium: #262343;
+  --light: #333157;
+  --accent: #a9a1f8;
+  --text: #e9a6a6;
+}
+
 body {
   display: flex;
   margin: 0;
   height: 100vh;
-  color: white;
-  background: #1F1D36;
+  color: var(--text);
+  background: var(--dark);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -12,13 +21,18 @@ body {
 }
 
 a, a[visited] {
-  color: white;
+  color: var(--text);
 }
 
 .library {
-  width: 200px;
-  background-color: #151427;
+  width: 240px;
+  background-color: var(--black);
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .canvas {
@@ -46,7 +60,7 @@ input[type="range"] {
 #canvas {
   height: 480px;
   width: 480px;
-  box-shadow: 0 0 25px 0 #151427;
+  box-shadow: 0 0 25px 0 var(--black);
 }
 
 input[type=color], .filler {
@@ -69,7 +83,7 @@ input[type=color], .filler {
 .label {
   position: relative;
 	display: flex;
-	background: #262343;
+	background: var(--medium);
 	margin: 8px 0;
 	justify-content: space-between;
 	border-radius: 5px;
@@ -89,13 +103,13 @@ input[type=radio] + .radio {
   display: inline-flex;
   height: 20px;
   width: 20px;
-  border: 1px solid #a9a1f8;
+  border: 1px solid var(--accent);
   border-radius: 99px;
   overflow: hidden;
 }
 
 input[type=radio]:checked + .radio {
-  background: #a9a1f8;
+  background: var(--accent);
 }
 
 .checkered {
@@ -115,17 +129,17 @@ input[type=radio]:checked + .radio {
 
 button {
 	flex-grow: 1;
-	background: #1f1d36;
+	background: var(--dark);
 	border: none;
-	color: #a9a1f8;
+	color: var(--accent);
 	padding: 8px;
 	border: 1px solid;
 	border-radius: 5px;
 }
 
 button:hover:not(:active) {
-	background: #a9a1f8;
-	color: #1f1d36;
+	background: var(--accent);
+	color: var(--dark);
 }
 
 .hotkey {
@@ -134,11 +148,12 @@ button:hover:not(:active) {
 }
 
 code {
-  background: #7b72d6;
+  background: var(--accent);
   padding: 0 4px;
   color: #000;
   border-radius: 3px;
   font-size: 16px;
+  opacity: 0.5;
 }
 
 #filename {
@@ -151,7 +166,7 @@ code {
 
 h2 {
 	margin-bottom: 0;
-	color: #a9a1f8;
+	color: var(--accent);
 	font-weight: normal;
 }
 
@@ -160,12 +175,12 @@ h2 {
 	width: 40px;
   flex-shrink: 0;
 	text-align: center;
-  color: #a9a1f8;
+  color: var(--accent);
 }
 
 .icon-delete:hover {
-  background-color: white;
-  color: #262343;
+  background-color: var(--accent);
+  color: var(--dark);
 }
 
 .filename {
@@ -187,7 +202,7 @@ h2 {
 	width: 80vw;
 	top: 10vh;
 	right: 5vw;
-	background: #151427;
+	background: var(--black);
 	z-index: 1;
 	padding: 16px;
 	box-sizing: border-box;
@@ -209,7 +224,7 @@ h2 {
 }
 
 pre {
-	background: #333157;
+	background: var(--light);
 	padding: 16px;
   max-height: 55vh;
   overflow: scroll;
@@ -225,8 +240,8 @@ pre {
 }
 
 #closeButton:hover:not(:active) {
-  background: white;
-  color: #151427;
+  background: var(--accent);
+  color: var(--black);
   user-select: none;
 }
 
@@ -235,14 +250,14 @@ pre {
   width: 40px;
   height: 20px;
   border-radius: 20px;
-  border: 1px solid #a9a1f8;
+  border: 1px solid var(--accent);
 }
 
 .switch::before {
   content: '';
   height: 16px;
   width: 16px;
-  background: #a9a1f8;
+  background: var(--accent);
   border-radius: 16px;
   margin: 2px;
   transition: margin 50ms ease-in-out;
@@ -256,7 +271,7 @@ pre {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	margin: 16px 0;
+	margin-bottom: 16px;
 }
 
 #testCanvas {
@@ -271,4 +286,8 @@ pre {
 
 p {
 	line-height: 1.5;
+}
+
+#icons {
+	overflow: auto;
 }

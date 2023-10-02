@@ -9,7 +9,6 @@
 </head>
 <body>
   <div class="library">
-    <h2>Color Palette</h2>
     <div class="color-format">
       <code>#FFFFFFF</code>
       <label>
@@ -26,7 +25,7 @@
           <code>1</code>
           <code>q</code>
         </span>
-        <input type="color" value="#111111">
+        <input type="color" value="#1c130a">
         <span class="color-swatch"></span>
       </label>
       <label data-color="2" class="label">
@@ -36,7 +35,7 @@
           <code>2</code>
           <code>w</code>
         </span>
-        <input type="color" value="#ffffff">
+        <input type="color" value="#f0ebea">
         <span class="color-swatch"></span>
       </label>
       <label data-color="3" class="label">
@@ -46,7 +45,7 @@
           <code>3</code>
           <code>e</code>
         </span>
-        <input type="color" value="#888888">
+        <input type="color" value="#939190">
         <span class="color-swatch"></span>
       </label>
       <label data-color="4" class="label">
@@ -56,7 +55,7 @@
           <code>4</code>
           <code>a</code>
         </span>
-        <input type="color" value="#ee1111">
+        <input type="color" value="#0f1945">
         <span class="color-swatch"></span>
       </label>
       <label data-color="5" class="label">
@@ -66,7 +65,7 @@
           <code>5</code>
           <code>s</code>
         </span>
-        <input type="color" value="#11ee11">
+        <input type="color" value="#376ed6">
         <span class="color-swatch"></span>
       </label>
       <label data-color="6" class="label">
@@ -76,7 +75,7 @@
           <code>6</code>
           <code>d</code>
         </span>
-        <input type="color" value="#1111ee">
+        <input type="color" value="#5d8f24">
         <span class="color-swatch"></span>
       </label>
       <label data-color="7" class="label">
@@ -86,7 +85,7 @@
           <code>7</code>
           <code>z</code>
         </span>
-        <input type="color" value="#11eeee">
+        <input type="color" value="#eda20c">
         <span class="color-swatch"></span>
       </label>
       <label data-color="8" class="label">
@@ -96,7 +95,7 @@
           <code>8</code>
           <code>x</code>
         </span>
-        <input type="color" value="#eeee11">
+        <input type="color" value="#eb6320">
         <span class="color-swatch"></span>
       </label>
       <label data-color="0" class="label">
@@ -111,17 +110,19 @@
       </label>
     </div>
     <div class="actions">
+      <button id="clear">
+        Clear
+      </button>
+      <button id="reset">
+        Reset Palette
+      </button>
+    </div>
+    <h2>Saved projects</h2>
+    <div class="actions">
       <button id="save">
         Save
       </button>
-      <!-- <button id="clear" onclick="alert('not implemented')">
-        Clear
-      </button>
-      <button id="reset" onclick="alert('not implemented')">
-        Reset
-      </button> -->
     </div>
-    <h2>Saved projects</h2>
     <div id="icons"></div>
   </div>
   <div class="canvas">
@@ -139,18 +140,10 @@
     <div class="canvas-container">
       <canvas id="canvas" class="checkered"></canvas>
     </div>
-    <div class="canvas-footer">
-      <span>
-        Created by <a href="https://github.com/lopis">lopis</a>
-      </span>
-      <span>
-        <a href="https://github.com/lopis/mini-pixelart-editor">Source code</a>
-      </span>
-    </div>
   </div>
   <div class="toolbar">
     <button id="generate">Generate code</button>
-    <button id="help">Help</button>
+    <button id="help">About</button>
   </div>
   <div id="codeModal" class="hidden">
     <div class="overlay"></div>
