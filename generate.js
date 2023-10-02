@@ -1,4 +1,5 @@
 function generateCode () {
+  const colorLength = colorFormat.checked ? 3 : 6
   const str = 
 `const palette = '${getPaletteString()}';
 const icons = ${getIconsString()};
@@ -15,8 +16,8 @@ const drawIcon = (ctx, icon, x, y) => {
   for (let j = 0; j < size; j++) {
     for (let i = 0; i < size; i++) {
       if (imageData[j * size + i]) {
-        const index = 3 * (imageData[j * size + i]-1);
-        ctx.fillStyle = '#' + palette.substring(index, index + 3);
+        const index = ${colorLength} * (imageData[j * size + i]-1);
+        ctx.fillStyle = '#' + palette.substring(index, index + ${colorLength});
         ctx.fillRect(x + i, y + j, 1, 1);
       }
     }
