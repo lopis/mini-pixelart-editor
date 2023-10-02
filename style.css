@@ -7,6 +7,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+* {
+  transition: all 50ms ease-in-out;
+}
+
 a, a[visited] {
   color: white;
 }
@@ -76,7 +80,8 @@ input[type=color], .filler {
   user-select: none;
 }
 
-input[type=radio] {
+input[type=radio],
+input[type=checkbox] {
   display: none;
 }
 
@@ -84,13 +89,13 @@ input[type=radio] + .radio {
   display: inline-flex;
   height: 20px;
   width: 20px;
-  border: 1px solid #7b6fee;
+  border: 1px solid #a9a1f8;
   border-radius: 99px;
   overflow: hidden;
 }
 
 input[type=radio]:checked + .radio {
-  background: #7b6fee;
+  background: #a9a1f8;
 }
 
 .checkered {
@@ -112,14 +117,14 @@ button {
 	flex-grow: 1;
 	background: #1f1d36;
 	border: none;
-	color: #ffffffDD;
+	color: #a9a1f8;
 	padding: 8px;
 	border: 1px solid;
 	border-radius: 5px;
 }
 
 button:hover:not(:active) {
-	background: #ffffffDD;
+	background: #a9a1f8;
 	color: #1f1d36;
 }
 
@@ -127,11 +132,13 @@ button:hover:not(:active) {
 	flex-grow: 1;
 	text-align: center;
 }
+
 code {
-  background: #4b467a;
+  background: #7b72d6;
   padding: 0 4px;
   color: #000;
   border-radius: 3px;
+  font-size: 16px;
 }
 
 #filename {
@@ -144,7 +151,7 @@ code {
 
 h2 {
 	margin-bottom: 0;
-	color: #7b6fee;
+	color: #a9a1f8;
 	font-weight: normal;
 }
 
@@ -153,7 +160,7 @@ h2 {
 	width: 40px;
   flex-shrink: 0;
 	text-align: center;
-  color: #7b6fee;
+  color: #a9a1f8;
 }
 
 .icon-delete:hover {
@@ -176,7 +183,7 @@ h2 {
 
 .modal {
 	position: fixed;
-	height: 70vh;
+	max-height: 70vh;
 	width: 80vw;
 	top: 15vh;
 	left: 10vw;
@@ -205,6 +212,7 @@ pre {
 	padding: 16px;
   max-height: 55vh;
   overflow: scroll;
+  margin: 16px 0 0;
 }
 
 #closeButton {
@@ -219,4 +227,43 @@ pre {
   background: white;
   color: #151427;
   user-select: none;
+}
+
+.switch {
+  display: inline-flex;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid #a9a1f8;
+}
+
+.switch::before {
+  content: '';
+  height: 16px;
+  width: 16px;
+  background: #a9a1f8;
+  border-radius: 16px;
+  margin: 2px;
+  transition: margin 50ms ease-in-out;
+}
+
+.checkbox-switch:checked + .switch::before {
+  margin-left: 22px;
+}
+
+.color-format {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin: 16px 0;
+}
+
+#testCanvas {
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	bottom: 32px;
+	right: 32px;
+	border-radius: 5px;
+  image-rendering: pixelated;
 }

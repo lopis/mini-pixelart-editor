@@ -1,23 +1,23 @@
-const generateCode = () => {
+function generateCode () {
   const str = 
-`const palette = '${colorPalette.join('').replaceAll('#', '')}';
+`const palette = '${getPaletteString()}';
 const icons = ${getIconsString()};
 
-drawIcon(icon, x, y) {
+const drawIcon = (ctx, icon, x, y) => {
   const imageData = [];
 
-  [...icon.data].map(c => {
+  [...icon].map(c => {
     const z = c.charCodeAt(0);
     imageData.push(z&7);
     imageData.push((z>>3)&7);
   });
-
-  for (let j = 0; j < icon.size; j++) {
-    for (let i = 0; i < icon.size; i++) {
-      if (imageData[j * icon.size + i]) {
-        const index = 3 * (imageData[j * icon.size + i]-1);
-        this.context.fillStyle = '#' + PALETTE.substring(index, index + 3);
-        this.context.fillRect(x + i, y + j, 1, 1);
+  const size = Math.sqrt(icon.length * 2)
+  for (let j = 0; j < size; j++) {
+    for (let i = 0; i < size; i++) {
+      if (imageData[j * size + i]) {
+        const index = 3 * (imageData[j * size + i]-1);
+        ctx.fillStyle = '#' + palette.substring(index, index + 3);
+        ctx.fillRect(x + i, y + j, 1, 1);
       }
     }
   }
@@ -25,6 +25,22 @@ drawIcon(icon, x, y) {
 `
   generatedCode.innerHTML = str
   codeModal.classList.remove('hidden')
+  eval(str.replaceAll('const', 'var'))
+  const ctx = testCanvas.getContext('2d')
+  testCanvas.height = canvasSize.value
+  testCanvas.width = canvasSize.value
+  drawIcon(ctx, icons[Object.keys(icons)[0]], 0, 0)
+}
+
+const getPaletteString = () => {
+  if (colorFormat.checked) {
+    return colorPalette
+      .slice(1, 9)
+      .map(c => c.replace(/#(.).(.).(.)./, "#$1$2$3"))
+      .join('').replaceAll('#', '')
+  }
+
+  return colorPalette.join('').replaceAll('#', '')
 }
 
 generate.addEventListener('click', () => {

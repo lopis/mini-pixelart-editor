@@ -21,7 +21,7 @@ icons.addEventListener('click', event => {
   if (key) {
     let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
     canvasGrid = data[key]
-    filename = key
+    filename.value = key
     canvasSize.value = canvasGrid.length
     canvasSize.dispatchEvent(new Event('update'))
   } else if (event.target.classList.contains('icon-delete')) {
@@ -78,5 +78,17 @@ const loadPalette = () => {
   }
 }
 
+const loadFirstFile = () => {
+  const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE))
+  if (data) {
+    const key = Object.keys(data)[0]
+    canvasGrid = data[key]
+    filename.value = key
+    canvasSize.value = canvasGrid.length
+    canvasSize.dispatchEvent(new Event('update'))
+  }
+}
+
+loadFirstFile()
 renderSavedFiles()
 loadPalette()
