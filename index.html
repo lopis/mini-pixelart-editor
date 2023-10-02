@@ -114,12 +114,12 @@
       <button id="save">
         Save
       </button>
-      <button id="clear" onclick="alert('not implemented')">
+      <!-- <button id="clear" onclick="alert('not implemented')">
         Clear
       </button>
       <button id="reset" onclick="alert('not implemented')">
         Reset
-      </button>
+      </button> -->
     </div>
     <h2>Saved projects</h2>
     <div id="icons"></div>
@@ -148,7 +148,10 @@
       </span>
     </div>
   </div>
-  <button id="generate">Generate code</button>
+  <div class="toolbar">
+    <button id="generate">Generate code</button>
+    <button id="help">Help</button>
+  </div>
   <div id="codeModal" class="hidden">
     <div class="overlay"></div>
     <div class="modal">
@@ -156,6 +159,45 @@
       <pre id="generatedCode"></pre>
       <div id="closeButton">✕</div>
       <canvas id="testCanvas" class="checkered" title="Test Example"></canvas>
+    </div>
+  </div>
+  <div id="helpModal" class="hidden">
+    <div class="overlay"></div>
+    <div class="modal">
+      <h2>Mini Pixelart Editor</h2>
+      <div id="closeButton">✕</div>
+      <p>
+        This pixel art editor was created to help create images and
+        compress them into a short string, keeping the palette data
+        separate. This method can produce "images" that are smaller
+        that regular image files.
+      </p>
+      <p>
+        This tool was created for the js13k game jam but can technically
+        be used for any purpose, though there are probably better
+        tools for that job.
+      </p>
+      <p>
+        You can use the hotkeys 1-0 or letters to select the colors.
+        Currently only German QWERTZ keyboard supported.
+      </p>
+      <p>
+        Use the <code>Save</code> button to save your creations to the browser
+        localstorage. Your palette is also saved automatically without
+        having to save. When you're ready to export your work,
+        you can press <code>Generate code</code>
+        to compress all images and the palette, and create a code snippet
+        that renders your pixel art. A small canvas in the corner of
+        the code dialog allows to confirm that the code is working.
+      </p>
+      <p>
+        Feel free to open any issues or pull requests over on github.
+      </p>
+      <p>
+        <a href="https://github.com/lopis/mini-pixelart-editor" target="_blank">
+          https://github.com/lopis/mini-pixelart-editor
+        </a>
+      </p>
     </div>
   </div>
   <script src="index.js"></script>

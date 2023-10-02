@@ -175,7 +175,7 @@ h2 {
   pointer-events: none;
 }
 
-#generate {
+.toolbar {
 	position: fixed;
 	top: 16px;
 	right: 16px;
@@ -185,12 +185,13 @@ h2 {
 	position: fixed;
 	max-height: 70vh;
 	width: 80vw;
-	top: 15vh;
-	left: 10vw;
+	top: 10vh;
+	right: 5vw;
 	background: #151427;
-  z-index: 1;
-  padding: 16px;
-  box-sizing: border-box;
+	z-index: 1;
+	padding: 16px;
+	box-sizing: border-box;
+	max-width: 700px;
 }
 
 .overlay {
@@ -266,4 +267,8 @@ pre {
 	right: 32px;
 	border-radius: 5px;
   image-rendering: pixelated;
+}
+
+p {
+	line-height: 1.5;
 }

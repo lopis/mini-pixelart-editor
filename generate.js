@@ -48,6 +48,13 @@ generate.addEventListener('click', () => {
   generateCode()
 })
 
-closeButton.addEventListener('click', () => {
-  codeModal.classList.add('hidden')
+help.addEventListener('click', () => {
+  helpModal.classList.remove('hidden')
+})
+
+document.addEventListener('click', event => {
+  if (event.target.id === 'closeButton') {
+    codeModal.classList.add('hidden')
+    helpModal.classList.add('hidden')
+  }
 })

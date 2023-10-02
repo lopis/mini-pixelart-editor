@@ -81,6 +81,7 @@ document.addEventListener('keydown', ({ key, target }) => {
 
   if (key == 'Escape') {
     codeModal.classList.add('hidden')
+    helpModal.classList.add('hidden')
   }
 })
 
