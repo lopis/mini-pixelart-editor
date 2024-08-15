@@ -17,6 +17,20 @@
       </label>
       <code>#FFF</code>
     </div>
+    <div class="color-format">
+      <div>
+        <code>Palette size</code>
+        <br>
+        <label>
+          <input class="checkbox-switch" type="range" id="paletteSize" list="markers" min="1" max="3" value="3" list="markers" autocomplete="off" >
+          <datalist id="markers">
+            <option value="1" label="2"></option>
+            <option value="2" label="4"></option>
+            <option value="3" label="8"></option>
+          </datalist>
+        </label>
+      </div>
+    </div>
     <div class="palette" id="palette">
       <label data-color="1" class="label">
         <input type="radio" name="brush-color" checked>
@@ -123,7 +137,7 @@
         Save
       </button>
     </div>
-    <div id="icons"></div>
+    <div id="iconsList"></div>
   </div>
   <div class="canvas">
     <div class="canvas-size">

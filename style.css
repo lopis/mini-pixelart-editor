@@ -57,6 +57,17 @@ input[type="range"] {
   width: 300px;
 }
 
+#paletteSize {
+  width: 100%;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+}
+
 #canvas {
   height: 480px;
   width: 480px;
@@ -288,6 +299,6 @@ p {
 	line-height: 1.5;
 }
 
-#icons {
+#iconsList {
 	overflow: auto;
 }

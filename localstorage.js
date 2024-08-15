@@ -1,5 +1,6 @@
 const LOCALSTORAGE_SAVE = 'pixeart_save'
 const LOCALSTORAGE_PALETTE = 'pixeart_palette'
+const LOCALSTORAGE_PALETTE_SIZE = 'pixeart_palette_size'
 
 save.addEventListener('click', () => {
   let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
@@ -16,7 +17,7 @@ save.addEventListener('click', () => {
   renderSavedFiles()
 })
 
-icons.addEventListener('click', event => {
+iconsList.addEventListener('click', event => {
   const key = event.target?.dataset?.key
   if (key) {
     let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
@@ -46,7 +47,7 @@ const renderSavedFiles = () => {
   Object.entries(data).forEach(([key, value]) => {
     html += `<div data-key="${key}" class="label"><span class="filename">${key}</span><span class="icon-delete">✕</span></div>`
   })
-  icons.innerHTML = html || 'No saved projects.'
+  iconsList.innerHTML = html || 'No saved projects.'
 }
 
 const getIconsString = () => {
@@ -55,9 +56,34 @@ const getIconsString = () => {
   Object.entries(data).forEach(([key, value]) => {
     let str = ''
     const flatArray = value.flat().map(n => parseInt(n))
-    for(let i = 0; i < flatArray.length; i += 2) {
-      // Encode 2 pixels together
-      str += String.fromCharCode(0b1000000 + (flatArray[i] || 0) + ((flatArray[i+1] || 0) << 3));
+
+    pSize = parseInt(paletteSize.value)
+    inc = pSize == 3 ? 2 : pSize == 2 ? 3 : 6
+    for(let i = 0; i < flatArray.length; i += inc) {
+      // Encode multiple pixels together
+      // pallete size 8 -> 3 bits -> 2 pixels per char
+      //              4 -> 2 bits -> 3 pixels per char
+      //              2 -> 1 bit  -> 6 pixels per char
+      if (paletteSize.value === '3') {
+        str += String.fromCharCode(0b1000000 + (flatArray[i] || 0) + ((flatArray[i+1] || 0) << 3));
+      } else if (paletteSize.value === '2') {
+        str += String.fromCharCode(
+          0b1000000 +
+          (flatArray[i] || 0) +
+          ((flatArray[i+1] || 0) << 2) +
+          ((flatArray[i+2] || 0) << 4)
+        )
+      } else {
+        str += String.fromCharCode(
+          0b1000000 +
+          (flatArray[i] || 0) +
+          ((flatArray[i+1] || 0) << 1) +
+          ((flatArray[i+2] || 0) << 2) +
+          ((flatArray[i+3] || 0) << 3) +
+          ((flatArray[i+4] || 0) << 4) +
+          ((flatArray[i+5] || 0) << 5)
+        )
+      }
     }
     stringData[key] = str
   })
@@ -66,6 +92,7 @@ const getIconsString = () => {
 
 const savePalette = () => {
   localStorage.setItem(LOCALSTORAGE_PALETTE, JSON.stringify(colorPalette))
+  localStorage.setItem(LOCALSTORAGE_PALETTE_SIZE, paletteSize.value)
 }
 
 const loadPalette = () => {
@@ -84,6 +111,12 @@ const loadPalette = () => {
     })
   } else {
     resetPalette()
+  }
+
+  const size = localStorage.getItem(LOCALSTORAGE_PALETTE_SIZE)
+  if (size) {
+    paletteSize.value = size
+    paletteSize.dispatchEvent(new Event('input'))
   }
 }
 
@@ -104,7 +137,7 @@ const resetPalette = () => {
 
 const loadFirstFile = () => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE))
-  if (data) {
+  if (data && Object.keys(data).length > 0) {
     const key = Object.keys(data)[0]
     canvasGrid = data[key]
     filename.value = key
