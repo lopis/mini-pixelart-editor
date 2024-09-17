@@ -59,6 +59,10 @@ const getPaletteString = () => {
 }
 
 generate.addEventListener('click', () => {
+  if (hasUnsavedChanged) {
+    alert('You seem to have forgotten to save your changes.');
+    return
+  }
   generateCode()
 })
 

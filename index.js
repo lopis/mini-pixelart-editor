@@ -65,7 +65,10 @@ canvas.addEventListener('mouseup', () => {
 colorFormat.addEventListener('change', event => {
   if (event.target.checked) {
     reply = confirm('Changing this setting to 3-char color format may cause loss of precision on all colors. Continue?')
-    if (!reply) return
+    if (!reply) {
+      event.preventDefault()
+      return false
+    }
     // Shorten each value from #FFFFFF to #FFF
     colorPalette = [undefined]
     document.querySelectorAll('.palette input[type=color]').forEach(swatch => {
@@ -125,21 +128,24 @@ palette.addEventListener('input', event => {
 
 clear.addEventListener('click', () => {
   updateGrid()
+  setUnsavedChanges(true)
 })
-
 up.addEventListener('click', () => {
-  canvasGrid.push(canvasGrid.shift());
+  canvasGrid.push(canvasGrid.shift())
+  setUnsavedChanges(true)
 })
 down.addEventListener('click', () => {
-  canvasGrid.unshift(canvasGrid.pop());
+  canvasGrid.unshift(canvasGrid.pop())
+  setUnsavedChanges(true)
 })
 right.addEventListener('click', () => {
-  canvasGrid.forEach(row => row.push(row.shift()));
-});
-
+  canvasGrid.forEach(row => row.push(row.shift()))
+  setUnsavedChanges(true)
+})
 left.addEventListener('click', () => {
-  canvasGrid.forEach(row => row.unshift(row.pop()));
-});
+  canvasGrid.forEach(row => row.unshift(row.pop()))
+  setUnsavedChanges(true)
+})
 
 const drawGrid = () => {
   const size = canvasSize.value;

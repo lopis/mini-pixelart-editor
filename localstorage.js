@@ -19,6 +19,15 @@ save.addEventListener('click', () => {
 })
 
 iconsList.addEventListener('click', event => {
+  if (hasUnsavedChanged) {
+    reply = confirm('Your unsaved changes will be lost, continue?')
+    if (!reply) {
+      event.preventDefault()
+      return false
+    }
+  }
+
+  setUnsavedChanges(false)
   const key = event.target?.dataset?.key
   if (key) {
     let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
