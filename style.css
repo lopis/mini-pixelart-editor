@@ -1,10 +1,10 @@
 :root {
-  --black: #151427;
-  --dark: #1F1D36;
-  --medium: #262343;
-  --light: #333157;
-  --accent: #a9a1f8;
-  --text: #e9a6a6;
+  --black: #121111;
+  --dark: #343333;
+  --medium: #757777;
+  --light: #cecccc;
+  --accent: #c90024;
+  --text: #ffffff;
 }
 
 body {
@@ -55,6 +55,25 @@ a, a[visited] {
 
 input[type="range"] {
   width: 300px;
+  -webkit-appearance: none;
+  background: var(--medium);
+  border-radius: 5px;
+  height: 8px;
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }
 
 #paletteSize {
@@ -74,35 +93,44 @@ datalist {
   box-shadow: 0 0 25px 0 var(--black);
 }
 
-input[type=color], .filler {
-  height: 100%;
-  width: 50px;
+input[type=color] {
   opacity: 0;
-  z-index: 1;
+}
+
+input[type=color] {
+	height: 30px;
+	width: 100%;
 }
 
 .color-swatch {
   display: inline-block;
-  height: 100%;
-  width: 40px;
+  height: 30px;
   background: currentcolor;
-  position: absolute;
-  right: 0;
-  top: 0;
 }
 
 .label {
-  position: relative;
+	position: relative;
 	display: flex;
-	background: var(--medium);
+	background: var(--dark);
 	margin: 8px 0;
-	justify-content: space-between;
 	border-radius: 5px;
-	padding-left: 8px;
-	height: 40px;
+	overflow: hidden;
+	user-select: none;
+	flex-direction: column;
+}
+
+#iconsList .label {
+	flex-direction: row;
 	align-items: center;
-  overflow: hidden;
-  user-select: none;
+	justify-content: space-between;
+	padding-left: 8px;
+	height: auto;
+}
+
+#palette {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 10px;
 }
 
 input[type=radio],
@@ -119,8 +147,19 @@ input[type=radio] + .radio {
   overflow: hidden;
 }
 
-input[type=radio]:checked + .radio {
-  background: var(--accent);
+input[type=radio]:checked + .hotkey {
+  background: var(--text);
+}
+
+input[type=radio]:checked + .hotkey code {
+  background-color: var(--text);
+  color: var(--accent);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  height: 30px;
 }
 
 .checkered {
@@ -142,51 +181,61 @@ button {
 	flex-grow: 1;
 	background: var(--dark);
 	border: none;
-	color: var(--accent);
+	color: var(--text);
 	padding: 8px;
-	border: 1px solid;
-	border-radius: 5px;
+	border-radius: 2px;
+  font-weight: bold;
 }
 
 button:hover:not(:active) {
 	background: var(--accent);
-	color: var(--dark);
+	color: var(--text);
 }
 
 .hotkey {
 	flex-grow: 1;
+  display: flex;
 	text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.hotkey code {
+  font-weight: bold;
 }
 
 code {
-  background: var(--accent);
+  background: var(--dark);
   padding: 0 4px;
-  color: #000;
+  color: var(--text);
   border-radius: 3px;
   font-size: 16px;
-  opacity: 0.5;
 }
 
-#filename {
-	font-size: 1.5em;
-	margin-bottom: 1em;
-	background: none;
-	border: none;
-	color: currentColor;
+.filename {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	pointer-events: none;
+	padding-top: 2px;
+	font-size: 90%;
 }
 
 h2 {
 	margin-bottom: 0;
 	color: var(--accent);
 	font-weight: normal;
+  font-size: 20px;
 }
 
 .icon-delete {
-	line-height: 40px;
+	height: 30px;
 	width: 40px;
-  flex-shrink: 0;
+	flex-shrink: 0;
 	text-align: center;
-  color: var(--accent);
+	color: var(--accent);
+	line-height: 34px;
 }
 
 .icon-delete:hover {
@@ -211,13 +260,12 @@ h2 {
 	position: fixed;
 	max-height: 70vh;
 	width: 80vw;
-	top: 10vh;
-	right: 5vw;
 	background: var(--black);
 	z-index: 1;
 	padding: 16px;
 	box-sizing: border-box;
-	max-width: 700px;
+  top: calc(50% - 35vh);
+  left: calc(50% - 40vw);
 }
 
 .overlay {
@@ -235,7 +283,7 @@ h2 {
 }
 
 pre {
-	background: var(--light);
+	background: var(--dark);
 	padding: 16px;
   max-height: 55vh;
   overflow: scroll;

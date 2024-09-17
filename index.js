@@ -64,7 +64,7 @@ colorFormat.addEventListener('change', event => {
       const value = swatch.value
       swatch.value = value.replace(/#(.).(.).(.)./, "#$1$1$2$2$3$3")
       colorPalette.push(swatch.value)
-      swatch.nextElementSibling.style.color = swatch.value
+      swatch.parentElement.style.color = swatch.value
     })
   }
 })
@@ -162,13 +162,13 @@ const updatePalette = () => {
   colorPalette = [undefined]
   document.querySelectorAll('.palette input[type=color]').forEach(swatch => {
     colorPalette.push(swatch.value)
-    swatch.nextElementSibling.style.color = swatch.value
+    swatch.parentElement.style.color = swatch.value
   })
 }
 
 const updateSelectedColor = () => [
   selectedColor = document.querySelector('.palette input[type=radio]:checked')
-  .parentElement.dataset.color
+  .parentElement.parentElement.dataset.color
 ]
 
 updateSelectedColor()

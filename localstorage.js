@@ -97,7 +97,7 @@ const savePalette = () => {
 
 const loadPalette = () => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_PALETTE) || '[]')
-  if (data.length === 9) {
+  if (data.length === 8) {
     colorPalette = []
     data.forEach((color, i) => {
       if (color === null) {
@@ -127,10 +127,9 @@ const resetPalette = () => {
     "#f0ebea",
     "#939190",
     "#0f1945",
-    "#376ed6",
+    "#d63737",
     "#5d8f24",
     "#eda20c",
-    "#eb6320",
   ]))
   loadPalette();
 }
