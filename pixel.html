@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Pixelart Editor</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+</head>
+<body>
+  <div class="library">
+    <div class="color-format">
+      <code>#FFFFFFF</code>
+      <label>
+        <input class="checkbox-switch" type="checkbox" id="colorFormat">
+        <span class="switch"></span>
+      </label>
+      <code>#FFF</code>
+    </div>
+    <h2>
+      Palette
+      <label>
+        <input class="checkbox-switch" type="range" id="paletteSize" list="markers" min="1" max="3" value="3" list="markers" autocomplete="off" >
+        <datalist id="markers">
+          <option value="1" label="2"></option>
+          <option value="2" label="4"></option>
+          <option value="3" label="8"></option>
+        </datalist>
+      </label>
+    </h2>
+    <div class="palette" id="palette">
+      <label data-color="1" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#1c130a">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color" checked>
+          <span class="hotkey">
+            <code>1</code>
+            <code>q</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="2" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#f0ebea">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>2</code>
+            <code>w</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="3" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#939190">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>3</code>
+            <code>e</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="4" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#0f1945">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>4</code>
+            <code>a</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="5" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#d63737">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>5</code>
+            <code>s</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="6" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#5d8f24">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>6</code>
+            <code>d</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="7" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#eda20c">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>7</code>
+            <code>z</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="0" class="label">
+        <span class="color-swatch checkered"></span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>0</code>
+            <code>c</code>
+          </span>
+        </label>
+      </label>
+    </div>
+    <h2>Saved projects</h2>
+    <div class="actions">
+      <button id="save">
+        Save
+      </button>
+    </div>
+    <div id="iconsList"></div>
+  </div>
+  <div class="canvas">
+    <div class="canvas-size">
+      <div>
+        <div id="indicator"></div>
+        <input id="filename" type="text" value="Untitled" required>
+      </div>
+      <div>
+        <label for="canvas-size">
+          Canvas Size: <span id="size">8</span>
+        </label>
+      </div>
+      <input id="canvasSize" name="canvas-size" type="range" step="2" value="8" min="2" max="32">
+    </div>
+    <div class="canvas-container">
+      <div class="actions">
+        <button id="clear">
+          Clear
+        </button>
+        <div>
+          <button id="up">
+            Up
+          </button>
+          <button id="down">
+            Down
+          </button>
+          <button id="right">
+            Right
+          </button>
+          <button id="left">
+            Left
+          </button>
+        </div>
+      </div>
+      <canvas id="canvas" class="checkered"></canvas>
+    </div>
+  </div>
+  <div class="toolbar">
+    <button id="generate">Generate code</button>
+    <button id="help">About</button>
+    <a href="/">Home</a>
+  </div>
+  <div id="codeModal" class="hidden">
+    <div class="overlay"></div>
+    <div class="modal">
+      <h2>Generated Code</h2>
+      <pre id="generatedCode"></pre>
+      <div id="closeButton">✕</div>
+      <canvas id="testCanvas" class="checkered" title="Test Example"></canvas>
+    </div>
+  </div>
+  <div id="helpModal" class="hidden">
+    <div class="overlay"></div>
+    <div class="modal">
+      <h2>Mini Pixelart Editor</h2>
+      <div id="closeButton">✕</div>
+      <p>
+        This pixel art editor was created to help create images and
+        compress them into a short string, keeping the palette data
+        separate. This method can produce "images" that are smaller
+        that regular image files.
+      </p>
+      <p>
+        This tool was created for the js13k game jam but can technically
+        be used for any purpose, though there are probably better
+        tools for that job.
+      </p>
+      <p>
+        You can use the hotkeys 1-0 or letters to select the colors.
+        Currently only German QWERTZ keyboard supported.
+      </p>
+      <p>
+        Use the <code>Save</code> button to save your creations to the browser
+        localstorage. Your palette is also saved automatically without
+        having to save. When you're ready to export your work,
+        you can press <code>Generate code</code>
+        to compress all images and the palette, and create a code snippet
+        that renders your pixel art. A small canvas in the corner of
+        the code dialog allows to confirm that the code is working.
+      </p>
+      <p>
+        Feel free to open any issues or pull requests over on github.
+      </p>
+      <p>
+        <a href="https://github.com/lopis/mini-pixelart-editor" target="_blank">
+          https://github.com/lopis/mini-pixelart-editor
+        </a>
+      </p>
+    </div>
+  </div>
+  <script src="index.js"></script>
+  <script src="localstorage.js"></script>
+  <script src="generate.js"></script>
+  <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
+</body>
+</html>

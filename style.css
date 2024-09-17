@@ -185,16 +185,18 @@ input[type=radio]:checked + .hotkey code {
 	justify-content: space-between;
 }
 
-button {
+button, a {
 	background: var(--dark);
 	border: none;
 	color: var(--text);
 	padding: 8px;
 	border-radius: 2px;
   font-weight: bold;
+  text-decoration: none;
+  font-size: 0.9em;
 }
 
-button:hover:not(:active) {
+button:hover:not(:active), a:hover:not(:active) {
 	background: var(--accent);
 	color: var(--text);
 }
