@@ -73,8 +73,13 @@ paletteSize.addEventListener('input', event => {
   const value = event.target.value
   const size = Math.pow(2, value)
   Array.from(palette.children).forEach((child, i) => {
-    child.classList.toggle('hidden', i >= size)
+    child.classList.toggle('hidden', i != 7 && i >= size-1)
   })
+  if (selectedColor >= size) {
+    selectedColor = 1
+    document.querySelector(`[data-color="${selectedColor}"] [name="brush-color"]`).checked = true
+  }
+  savePalette();
 })
 
 document.addEventListener('keydown', ({ key, target }) => {
@@ -82,14 +87,15 @@ document.addEventListener('keydown', ({ key, target }) => {
 
   const keystr = 'cqweasdzx'
   let color = isNaN(key) ? keystr.indexOf(key) : parseInt(key)
-  // if (color >= Math.pow(2, paletteSize.value)) {
-  //   console.log(color);
-  //   return
-  // }
 
   if (Number.isInteger(color) && color >= 0 && color <= 8) {
-    selectedColor = color
-    document.querySelector(`[data-color="${selectedColor}"] [name="brush-color"]`).checked = true
+    const colorControl = document.querySelector(`[data-color="${color}"]`)
+    console.log(colorControl);
+    
+    if (!colorControl.classList.contains('hidden')) {
+      selectedColor = color
+      colorControl.querySelector('[name="brush-color"]').checked = true
+    }
   }
 
   if (key == 'Escape') {

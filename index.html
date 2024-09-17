@@ -17,21 +17,17 @@
       </label>
       <code>#FFF</code>
     </div>
-    <div class="color-format">
-      <div>
-        <h2>Palette size</h2>
-        <br>
-        <label>
-          <input class="checkbox-switch" type="range" id="paletteSize" list="markers" min="1" max="3" value="3" list="markers" autocomplete="off" >
-          <datalist id="markers">
-            <option value="1" label="2"></option>
-            <option value="2" label="4"></option>
-            <option value="3" label="8"></option>
-          </datalist>
-        </label>
-      </div>
-    </div>
-    <h2>Palette</h2>
+    <h2>
+      Palette
+      <label>
+        <input class="checkbox-switch" type="range" id="paletteSize" list="markers" min="1" max="3" value="3" list="markers" autocomplete="off" >
+        <datalist id="markers">
+          <option value="1" label="2"></option>
+          <option value="2" label="4"></option>
+          <option value="3" label="8"></option>
+        </datalist>
+      </label>
+    </h2>
     <div class="palette" id="palette">
       <label data-color="1" class="label">
         <span class="color-swatch">
@@ -128,14 +124,6 @@
         </label>
       </label>
     </div>
-    <div class="actions">
-      <button id="clear">
-        Clear
-      </button>
-      <button id="reset">
-        Reset Palette
-      </button>
-    </div>
     <h2>Saved projects</h2>
     <div class="actions">
       <button id="save">
@@ -157,6 +145,11 @@
       <input id="canvasSize" name="canvas-size" type="range" step="2" value="8" min="2" max="32">
     </div>
     <div class="canvas-container">
+      <div class="actions">
+        <button id="clear">
+          Clear
+        </button>
+      </div>
       <canvas id="canvas" class="checkered"></canvas>
     </div>
   </div>

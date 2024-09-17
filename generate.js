@@ -26,8 +26,6 @@ const drawIcon = (ctx, icon, x, y) => {
     `}
   });
 
-  console.log(imageData);
-
   const size = Math.sqrt(icon.length * 2)
   for (let j = 0; j < size; j++) {
     for (let i = 0; i < size; i++) {

@@ -3,7 +3,7 @@
   --dark: #343333;
   --medium: #757777;
   --light: #cecccc;
-  --accent: #c90024;
+  --accent: #c60024;
   --text: #ffffff;
 }
 
@@ -48,9 +48,15 @@ a, a[visited] {
 }
 
 .canvas-container {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.canvas-container .actions {
+	margin-top: -100px;
 }
 
 input[type="range"] {
@@ -112,7 +118,7 @@ input[type=color] {
 	position: relative;
 	display: flex;
 	background: var(--dark);
-	margin: 8px 0;
+	margin: 5px 0;
 	border-radius: 5px;
 	overflow: hidden;
 	user-select: none;
@@ -213,19 +219,18 @@ code {
   font-size: 16px;
 }
 
-.filename {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	pointer-events: none;
-	padding-top: 2px;
-	font-size: 90%;
+#filename {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	background: none;
+	border: none;
+	color: currentColor;
 }
+
 
 h2 {
 	margin-bottom: 0;
 	color: var(--accent);
-	font-weight: normal;
   font-size: 20px;
 }
 
@@ -247,7 +252,9 @@ h2 {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-  pointer-events: none;
+	pointer-events: none;
+	padding-top: 2px;
+	font-size: 90%;
 }
 
 .toolbar {
@@ -288,6 +295,8 @@ pre {
   max-height: 55vh;
   overflow: scroll;
   margin: 16px 0 0;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 #closeButton {

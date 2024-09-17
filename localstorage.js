@@ -37,10 +37,6 @@ iconsList.addEventListener('click', event => {
   }
 })
 
-reset.addEventListener('click', () => {
-  resetPalette();
-})
-
 const renderSavedFiles = () => {
   let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
   let html = ''
