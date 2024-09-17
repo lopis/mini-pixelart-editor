@@ -8,6 +8,12 @@ let canvasGrid = []
 let colorPalette = []
 let selectedColor
 let mouseDown = false
+let hasUnsavedChanged = false
+
+const setUnsavedChanges = (value) => {
+  hasUnsavedChanged = value
+  indicator.classList.toggle('unsaved', value)
+}
 
 canvasSize.addEventListener('input', event => {
   size.innerHTML = event.target.value
@@ -36,6 +42,7 @@ canvas.addEventListener('mousemove', event => {
     const [row, col] = selectedCell
     if (canvasGrid[col] != undefined && canvasGrid[col][row] != undefined) {
       canvasGrid[col][row] = selectedColor
+      setUnsavedChanges(true)
     }
   }
 })
@@ -48,6 +55,7 @@ canvas.addEventListener('mousedown', () => {
   mouseDown = true
   const [row, col] = selectedCell
   canvasGrid[col][row] = selectedColor
+  setUnsavedChanges(true)
 })
 
 canvas.addEventListener('mouseup', () => {

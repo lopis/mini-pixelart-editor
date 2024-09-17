@@ -13,6 +13,7 @@ save.addEventListener('click', () => {
   } else {
     data[name] = canvasGrid
   }
+  setUnsavedChanges(false)
   localStorage.setItem(LOCALSTORAGE_SAVE, JSON.stringify(data))
   renderSavedFiles()
 })

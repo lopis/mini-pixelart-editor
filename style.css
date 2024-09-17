@@ -228,6 +228,16 @@ code {
 	color: currentColor;
 }
 
+#indicator {
+	font-size: 1.5em;
+	position: absolute;
+	margin-left: -0.8em;
+}
+
+#indicator.unsaved::before {
+  content: "●";
+  color: var(--accent);
+}
 
 h2 {
 	margin-bottom: 0;
