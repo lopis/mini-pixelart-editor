@@ -119,6 +119,20 @@ clear.addEventListener('click', () => {
   updateGrid()
 })
 
+up.addEventListener('click', () => {
+  canvasGrid.push(canvasGrid.shift());
+})
+down.addEventListener('click', () => {
+  canvasGrid.unshift(canvasGrid.pop());
+})
+right.addEventListener('click', () => {
+  canvasGrid.forEach(row => row.push(row.shift()));
+});
+
+left.addEventListener('click', () => {
+  canvasGrid.forEach(row => row.unshift(row.pop()));
+});
+
 const drawGrid = () => {
   const size = canvasSize.value;
   for(let col = 0; col < size; col++) {
