@@ -50,7 +50,7 @@ a, a[visited] {
   width: 80%;
 }
 
-.canvas-container {
+#canvasContainer {
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
@@ -58,7 +58,7 @@ a, a[visited] {
 	align-items: flex-start;
 }
 
-.canvas-container .actions {
+#canvasContainer .actions {
 	margin-top: -100px;
 }
 

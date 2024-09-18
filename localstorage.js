@@ -2,50 +2,52 @@ const LOCALSTORAGE_SAVE = 'pixeart_save'
 const LOCALSTORAGE_PALETTE = 'pixeart_palette'
 const LOCALSTORAGE_PALETTE_SIZE = 'pixeart_palette_size'
 
-save.addEventListener('click', () => {
-  let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
-  const name = filename.value
-  if (data[name]) {
-    const reply = confirm(`"${name}" already exists in local storage. Do you want to overwrite it?`)
-    if (reply) {
+const initStorageControls = (canvasGrid) => {
+  save.addEventListener('click', () => {
+    let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
+    const name = filename.value
+    if (data[name]) {
+      const reply = confirm(`"${name}" already exists in local storage. Do you want to overwrite it?`)
+      if (reply) {
+        data[name] = canvasGrid
+      }
+    } else {
       data[name] = canvasGrid
     }
-  } else {
-    data[name] = canvasGrid
-  }
-  setUnsavedChanges(false)
-  localStorage.setItem(LOCALSTORAGE_SAVE, JSON.stringify(data))
-  renderSavedFiles()
-})
-
-iconsList.addEventListener('click', event => {
-  if (hasUnsavedChanged) {
-    reply = confirm('Your unsaved changes will be lost, continue?')
-    if (!reply) {
-      event.preventDefault()
-      return false
-    }
-  }
-
-  setUnsavedChanges(false)
-  const key = event.target?.dataset?.key
-  if (key) {
-    let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
-    canvasGrid = data[key]
-    filename.value = key
-    canvasSize.value = canvasGrid.length
-    canvasSize.dispatchEvent(new Event('update'))
-  } else if (event.target.classList.contains('icon-delete')) {
-    const key = event.target.parentElement?.dataset?.key
-    const reply = confirm(`Delete saved project "${key}"?`)
-    if (reply) {
-      let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
-      delete data[key]
-      localStorage.setItem(LOCALSTORAGE_SAVE, JSON.stringify(data))
-    }
+    setUnsavedChanges(false)
+    localStorage.setItem(LOCALSTORAGE_SAVE, JSON.stringify(data))
     renderSavedFiles()
-  }
-})
+  })
+  
+  iconsList.addEventListener('click', event => {
+    if (hasUnsavedChanged) {
+      reply = confirm('Your unsaved changes will be lost, continue?')
+      if (!reply) {
+        event.preventDefault()
+        return false
+      }
+    }
+  
+    setUnsavedChanges(false)
+    const key = event.target?.dataset?.key
+    if (key) {
+      let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
+      canvasGrid.splice(0, canvasGrid.length, ...data[key])
+      filename.value = key
+      canvasSize.value = canvasGrid.length
+      canvasSize.dispatchEvent(new Event('update'))
+    } else if (event.target.classList.contains('icon-delete')) {
+      const key = event.target.parentElement?.dataset?.key
+      const reply = confirm(`Delete saved project "${key}"?`)
+      if (reply) {
+        let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
+        delete data[key]
+        localStorage.setItem(LOCALSTORAGE_SAVE, JSON.stringify(data))
+      }
+      renderSavedFiles()
+    }
+  })
+}
 
 const renderSavedFiles = () => {
   let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
@@ -140,17 +142,13 @@ const resetPalette = () => {
   loadPalette();
 }
 
-const loadFirstFile = () => {
+const loadFirstFile = (canvasGrid) => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE))
   if (data && Object.keys(data).length > 0) {
     const key = Object.keys(data)[0]
-    canvasGrid = data[key]
+    canvasGrid.splice(0, canvasGrid.length, ...data[key])
     filename.value = key
     canvasSize.value = canvasGrid.length
     canvasSize.dispatchEvent(new Event('update'))
   }
 }
-
-loadFirstFile()
-renderSavedFiles()
-loadPalette()
