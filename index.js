@@ -8,6 +8,7 @@ let canvasGrid = []
 let colorPalette = []
 let selectedColor
 let mouseDown = false
+let isRightButton = false
 let hasUnsavedChanged = false
 
 const setUnsavedChanges = (value) => {
@@ -41,7 +42,9 @@ canvas.addEventListener('mousemove', event => {
   if (mouseDown) {
     const [row, col] = selectedCell
     if (canvasGrid[col] != undefined && canvasGrid[col][row] != undefined) {
-      canvasGrid[col][row] = selectedColor
+      canvasGrid[col][row] = isRightButton ? 0 : selectedColor
+      event.preventDefault();
+      event.stopPropagation();
       setUnsavedChanges(true)
     }
   }
@@ -51,11 +54,16 @@ canvas.addEventListener('mouseout', () => {
   selectedCell = []
 })
 
-canvas.addEventListener('mousedown', () => {
+canvas.addEventListener('mousedown', (event) => {
+  isRightButton = event.button === 2;
   mouseDown = true
   const [row, col] = selectedCell
   canvasGrid[col][row] = selectedColor
   setUnsavedChanges(true)
+})
+
+canvas.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
 })
 
 canvas.addEventListener('mouseup', () => {
