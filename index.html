@@ -13,6 +13,9 @@
       text-align: center;
       font-size: 30px;
     }
+    h1 {
+      margin-top: -2em;
+    }
     a {
       display: inline-flex;
       background: var(--black);
@@ -25,13 +28,27 @@
     a:hover {
       background: var(--accent);
     }
+    a[disabled] {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    span {
+      background: #fff;
+      display: inline-flex;
+      border-radius: 999px;
+      height: 1.5em;
+      width: 1.5em;
+      justify-content: center;
+      align-items: end;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>Mini pixel art editor</h1>
+    <h1><span>👾</span> Mini pixel art editor</h1>
     <a href="pixel.html">Image editor</a>
-    <a href="font.html">Font editor</a>
+    <a href="#" disabled>Font editor</a>
   </main>
   <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
 </body>

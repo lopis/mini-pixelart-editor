@@ -1,0 +1,35 @@
+#canvasContainer {
+	flex-direction: revert;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.checkered {
+  background: var(--light)
+}
+
+#canvasContainer {
+  overflow-y: auto;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+	width: 80%;
+  padding-bottom: 15px;
+}
+
+.preview input {
+  background-color: var(--light);
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.preview canvas {
+  background-color: var(--light);
+  display: block;
+  width: 100%;
+  height: auto;
+}

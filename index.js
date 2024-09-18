@@ -1,48 +1,47 @@
 let HEIGHT = 0
 let cellSize = 0
-let selectedCell = []
 let colorPalette = []
 let selectedColor
 let mouseDown = false
 let isRightButton = false
 let hasUnsavedChanged = false
 
-const editorInit = (canvas) => {
-  HEIGHT = canvas.clientHeight
-  canvas.height = HEIGHT
-  canvas.width = HEIGHT
-  ctx = canvas.getContext('2d')
+const editorInit = (state) => {
+  HEIGHT = state.canvas.clientHeight
+  state.canvas.height = HEIGHT
+  state.canvas.width = HEIGHT
+  state.ctx = state.canvas.getContext('2d')
   cellSize = Math.round(HEIGHT / canvasSize.value)
 }
 
-const initControls = (canvas, canvasGrid) => {
+const initControls = (state) => {
   canvasSize.addEventListener('input', event => {
     size.innerHTML = event.target.value
     cellSize = ~~(HEIGHT / canvasSize.value)
-    updateGrid(canvas, canvasGrid, true)
+    updateGrid(state, true)
   })
   
   canvasSize.addEventListener('update', event => {
     event.preventDefault();
     size.innerHTML = event.target.value
     cellSize = ~~(HEIGHT / canvasSize.value)
-    updateGrid(canvas, canvasGrid, false)
+    updateGrid(state, false)
   })
   
-  canvas.addEventListener('mousemove', event => {
+  state.canvas.addEventListener('mousemove', event => {
     const { clientX, clientY } = event
-    const { offsetLeft, offsetTop } = event.target
-    const x = clientX - offsetLeft
-    const y = clientY - offsetTop
-    selectedCell = [
+    const { offsetLeft, offsetTop, parentElement } = event.target
+    const x = clientX - offsetLeft + parentElement.scrollLeft
+    const y = clientY - offsetTop + parentElement.scrollTop
+    state.selectedCell = [
       ~~(x / cellSize),
       ~~(y / cellSize),
     ]
   
     if (mouseDown) {
-      const [row, col] = selectedCell
-      if (canvasGrid[col] != undefined && canvasGrid[col][row] != undefined) {
-        canvasGrid[col][row] = isRightButton ? 0 : selectedColor
+      const [row, col] = state.selectedCell
+      if (state.canvasGrid[col] != undefined && state.canvasGrid[col][row] != undefined) {
+        state.canvasGrid[col][row] = isRightButton ? 0 : selectedColor
         event.preventDefault();
         event.stopPropagation();
         setUnsavedChanges(true)
@@ -50,23 +49,23 @@ const initControls = (canvas, canvasGrid) => {
     }
   })
   
-  canvas.addEventListener('mouseout', () => {
-    selectedCell = []
+  state.canvas.addEventListener('mouseout', () => {
+    state.selectedCell = []
   })
   
-  canvas.addEventListener('mousedown', (event) => {
+  state.canvas.addEventListener('mousedown', (event) => {
     isRightButton = event.button === 2;
     mouseDown = true
-    const [row, col] = selectedCell
-    canvasGrid[col][row] = selectedColor
+    const [row, col] = state.selectedCell
+    state.canvasGrid[col][row] = selectedColor
     setUnsavedChanges(true)
   })
   
-  canvas.addEventListener('contextmenu', (event) => {
+  state.canvas.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   })
   
-  canvas.addEventListener('mouseup', () => {
+  state.canvas.addEventListener('mouseup', () => {
     mouseDown = false
   })
   
@@ -109,8 +108,6 @@ const initControls = (canvas, canvasGrid) => {
   
     if (Number.isInteger(color) && color >= 0 && color <= 8) {
       const colorControl = document.querySelector(`[data-color="${color}"]`)
-      console.log(colorControl);
-      
       if (!colorControl.classList.contains('hidden')) {
         selectedColor = color
         colorControl.querySelector('[name="brush-color"]').checked = true
@@ -134,26 +131,28 @@ const initControls = (canvas, canvasGrid) => {
     }
   })
   
-  clear.addEventListener('click', () => {
-    updateGrid(canvas, canvasGrid)
-    setUnsavedChanges(true)
-  })
-  up.addEventListener('click', () => {
-    canvasGrid.push(canvasGrid.shift())
-    setUnsavedChanges(true)
-  })
-  down.addEventListener('click', () => {
-    canvasGrid.unshift(canvasGrid.pop())
-    setUnsavedChanges(true)
-  })
-  right.addEventListener('click', () => {
-    canvasGrid.forEach(row => row.push(row.shift()))
-    setUnsavedChanges(true)
-  })
-  left.addEventListener('click', () => {
-    canvasGrid.forEach(row => row.unshift(row.pop()))
-    setUnsavedChanges(true)
-  })
+  if (typeof clear !== 'undefined') {
+    clear.addEventListener('click', () => {
+      updateGrid(canvas, state.canvasGrid)
+      setUnsavedChanges(true)
+    })
+    up.addEventListener('click', () => {
+      state.canvasGrid.push(state.canvasGrid.shift())
+      setUnsavedChanges(true)
+    })
+    down.addEventListener('click', () => {
+      state.canvasGrid.unshift(state.canvasGrid.pop())
+      setUnsavedChanges(true)
+    })
+    right.addEventListener('click', () => {
+      state.canvasGrid.forEach(row => row.push(row.shift()))
+      setUnsavedChanges(true)
+    })
+    left.addEventListener('click', () => {
+      state.canvasGrid.forEach(row => row.unshift(row.pop()))
+      setUnsavedChanges(true)
+    })
+  }
 }
 
 const setUnsavedChanges = (value) => {
@@ -161,36 +160,36 @@ const setUnsavedChanges = (value) => {
   indicator.classList.toggle('unsaved', value)
 }
 
-const drawGrid = (canvasGrid) => {
+const drawGrid = (state) => {
   const size = canvasSize.value;
   for(let col = 0; col < size; col++) {
     for(let row = 0; row < size; row++) {
-      const fill = colorPalette[canvasGrid[row][col]]
+      const fill = colorPalette[state.canvasGrid[row][col]]
       if (fill) {
-        ctx.fillStyle = fill
-        ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
+        state.ctx.fillStyle = fill
+        state.ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize)
       }
     }
   }
   for(let col = 0; col < size; col++) {
     for(let row = 0; row < size; row++) {
-      ctx.strokeStyle = '#615d83'
-      ctx.lineWidth = 1
-      if (selectedCell[1] == row && selectedCell[0] == col) {
-        ctx.lineWidth = 5
+      state.ctx.strokeStyle = '#615d83'
+      state.ctx.lineWidth = 1
+      if (state.selectedCell[1] == row && state.selectedCell[0] == col) {
+        state.ctx.lineWidth = 5
       }
-      ctx.strokeRect(col * cellSize, row * cellSize, cellSize, cellSize)
+      state.ctx.strokeRect(col * cellSize, row * cellSize, cellSize, cellSize)
     }
   }
 }
 
-const initCanvas = (canvas, canvasGrid) => {
-  ctx.clearRect(0, 0, canvas.height, canvas.width)
-  drawGrid(canvasGrid)
-  requestAnimationFrame(() => initCanvas(canvas, canvasGrid))
+const initCanvas = (state) => {
+  state.ctx.clearRect(0, 0, state.canvas.height, state.canvas.width)
+  drawGrid(state)
+  requestAnimationFrame(() => initCanvas(state))
 }
 
-const updateGrid = (canvas, canvasGrid, resetGrid = true) => {
+const updateGrid = ({canvas, canvasGrid}, resetGrid = true) => {
   if (resetGrid) {
     canvasGrid.splice(0, canvasGrid.length)
     for(let col = 0; col < canvasSize.value; col++) {

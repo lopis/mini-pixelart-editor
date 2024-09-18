@@ -1,13 +1,17 @@
-let canvasGrid = []
+const state = {
+  canvasGrid: [],
+  canvas,
+  selectedCell: [],
+}
 
-editorInit(canvas)
-initControls(canvas, canvasGrid)
-initStorageControls(canvasGrid)
+editorInit(state)
+initControls(state)
+initStorageControls(state)
 updateSelectedColor()
 updatePalette()
-updateGrid(canvas, canvasGrid, true)
-initCanvas(canvas, canvasGrid)
+updateGrid(state, true)
+initCanvas(state)
 
-loadFirstFile(canvasGrid)
+loadFirstFile(state)
 renderSavedFiles()
 loadPalette()

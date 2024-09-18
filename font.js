@@ -1,4 +1,4 @@
-const fontCanvasData = []
+const states = []
 
 const fontEditorInit = () => {
   for (let index = 0; index < 60; index++) {
@@ -6,11 +6,16 @@ const fontEditorInit = () => {
     canvas.id = `canvas${index}`
     canvas.classList.add('checkered')
     canvasContainer.appendChild(canvas)
-    fontCanvasData[index] = []
-    editorInit(canvas)
-    initControls(canvas, fontCanvasData[index])
-    updateGrid(canvas, fontCanvasData[index], true)
-    initCanvas(canvas, fontCanvasData[index])
+    const state = {
+      canvasGrid: [],
+      canvas: canvas,
+      selectedCell: [],
+    }
+    states.push(state)
+    editorInit(state)
+    initControls(state)
+    updateGrid(state, true)
+    initCanvas(state)
   }
 }
 

@@ -33,6 +33,7 @@ a, a[visited] {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;

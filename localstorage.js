@@ -2,7 +2,7 @@ const LOCALSTORAGE_SAVE = 'pixeart_save'
 const LOCALSTORAGE_PALETTE = 'pixeart_palette'
 const LOCALSTORAGE_PALETTE_SIZE = 'pixeart_palette_size'
 
-const initStorageControls = (canvasGrid) => {
+const initStorageControls = ({canvasGrid}) => {
   save.addEventListener('click', () => {
     let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
     const name = filename.value
@@ -142,7 +142,7 @@ const resetPalette = () => {
   loadPalette();
 }
 
-const loadFirstFile = (canvasGrid) => {
+const loadFirstFile = ({canvasGrid}) => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE))
   if (data && Object.keys(data).length > 0) {
     const key = Object.keys(data)[0]

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mini Font Editor</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="font.css">
   <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
 </head>
 <body>
@@ -136,35 +137,20 @@
     <div class="canvas-size">
       <div>
         <div id="indicator"></div>
-        <input id="filename" type="text" value="Untitled" required>
+        <input id="filename" type="text" value="My Font" required>
       </div>
       <div>
         <label for="canvas-size">
           Canvas Size: <span id="size">8</span>
         </label>
       </div>
-      <input id="canvasSize" name="canvas-size" type="range" step="2" value="8" min="2" max="32">
+      <input id="canvasSize" name="canvas-size" type="range" step="1" value="5" min="2" max="10">
+    </div>
+    <div class="preview">
+      <input type="text" value="#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^">
+      <canvas id="preview" height="30" width="72"></canvas>
     </div>
     <div id="canvasContainer">
-      <div class="actions">
-        <button id="clear">
-          Clear
-        </button>
-        <div>
-          <button id="up">
-            Up
-          </button>
-          <button id="down">
-            Down
-          </button>
-          <button id="right">
-            Right
-          </button>
-          <button id="left">
-            Left
-          </button>
-        </div>
-      </div>
     </div>
   </div>
   <div class="toolbar">
