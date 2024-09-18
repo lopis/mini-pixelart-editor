@@ -117,7 +117,7 @@ document.addEventListener('keydown', ({ key, target }) => {
 
 palette.addEventListener('input', event => {
   if (event.target.name === 'brush-color') {
-    selectedColor = event.target.parentElement.dataset.color
+    selectedColor = event.target.parentElement.parentElement.dataset.color
   } else {
     const color = event.target.dataset.color
     colorPalette[color] = event.target.value
