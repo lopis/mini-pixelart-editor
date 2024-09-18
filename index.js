@@ -57,7 +57,7 @@ const initControls = (state) => {
     isRightButton = event.button === 2;
     mouseDown = true
     const [row, col] = state.selectedCell
-    state.canvasGrid[col][row] = selectedColor
+    state.canvasGrid[col][row] = isRightButton ? 0 : selectedColor
     setUnsavedChanges(true)
   })
   
