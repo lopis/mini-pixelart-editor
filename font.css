@@ -4,8 +4,10 @@
 	gap: 8px;
 }
 
-.checkered {
-  background: var(--light)
+canvas.checkered {
+  color: var(--medium);
+  background: var(--light);
+  border: 5px solid var(--light);
 }
 
 #canvasContainer {
@@ -32,4 +34,7 @@
   display: block;
   width: 100%;
   height: auto;
+  image-rendering: pixelated;
+  padding: 5px;
+  box-sizing: border-box;
 }

@@ -98,6 +98,7 @@ datalist {
 }
 
 #canvas {
+  color: var(--medium);
   height: 480px;
   width: 480px;
   box-shadow: 0 0 25px 0 var(--black);

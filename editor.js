@@ -10,8 +10,15 @@ initStorageControls(state)
 updateSelectedColor()
 updatePalette()
 updateGrid(state, true)
-initCanvas(state)
 
 loadFirstFile(state)
 renderSavedFiles()
 loadPalette()
+
+updateCanvas(state)
+state.canvas.addEventListener('click', () => {
+  updateCanvas(state);
+});
+state.canvas.addEventListener('mousemove', () => {
+  updateCanvas(state);
+});

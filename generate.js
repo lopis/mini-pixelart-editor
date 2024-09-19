@@ -1,18 +1,16 @@
-function generateCode () {
-  const colorLength = colorFormat.checked ? 3 : 6
-  const str = 
-`const palette = '${getPaletteString()}';
-const icons = ${getIconsString()};
+const getParsingFunctionString = (paletteString, iconString, colorLength, paletteSize) => {
+  return `const palette = '${paletteString}';
+const icons = ${iconString};
 
 const drawIcon = (ctx, icon, x, y) => {
   const imageData = [];
 
   [...icon].map(c => {
     const z = c.charCodeAt(0);
-    ${paletteSize.value === '3' ? `
+    ${paletteSize === '3' ? `
     imageData.push(z&7);
     imageData.push((z>>3)&7);
-    ` : paletteSize.value === '2' ? `
+    ` : paletteSize === '2' ? `
     imageData.push(z&3);
     imageData.push((z>>2)&3);
     imageData.push((z>>4)&3);  
@@ -36,8 +34,14 @@ const drawIcon = (ctx, icon, x, y) => {
       }
     }
   }
+}`
 }
-`
+
+function generateCode () {
+  const colorLength = colorFormat.checked ? 3 : 6
+  const str = getParsingFunctionString(getPaletteString(), getIconsString(), colorLength, paletteSize.value)
+  console.log(str);
+
   generatedCode.innerHTML = str
   codeModal.classList.remove('hidden')
   eval(str.replaceAll('const', 'var'))

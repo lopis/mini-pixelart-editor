@@ -173,7 +173,7 @@ const drawGrid = (state) => {
   }
   for(let col = 0; col < size; col++) {
     for(let row = 0; row < size; row++) {
-      state.ctx.strokeStyle = '#615d83'
+      state.ctx.strokeStyle = 'currentColor'
       state.ctx.lineWidth = 1
       if (state.selectedCell[1] == row && state.selectedCell[0] == col) {
         state.ctx.lineWidth = 5
@@ -183,10 +183,9 @@ const drawGrid = (state) => {
   }
 }
 
-const initCanvas = (state) => {
+const updateCanvas = (state) => {
   state.ctx.clearRect(0, 0, state.canvas.height, state.canvas.width)
   drawGrid(state)
-  requestAnimationFrame(() => initCanvas(state))
 }
 
 const updateGrid = ({canvas, canvasGrid}, resetGrid = true) => {
