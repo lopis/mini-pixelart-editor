@@ -38,3 +38,15 @@ canvas.checkered {
   padding: 5px;
   box-sizing: border-box;
 }
+
+.canvas-label {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+	margin-left: -28px;
+	background: var(--accent);
+	font-size: 90%;
+	line-height: 20px;
+	border-bottom-left-radius: 7px;
+	font-family: mono;
+}

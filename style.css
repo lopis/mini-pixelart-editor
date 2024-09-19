@@ -74,13 +74,13 @@ input[type="range"] {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    background: var(--accent);
+    background: var(--black);
     border-radius: 50%;
     cursor: pointer;
   }
 
   &::-moz-range-thumb {
-    background: var(--accent);
+    background: var(--black);
     border-radius: 50%;
     cursor: pointer;
   }
