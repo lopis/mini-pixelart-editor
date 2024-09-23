@@ -5,9 +5,12 @@
 }
 
 canvas.checkered {
-  color: var(--medium);
-  background: var(--light);
-  border: 5px solid var(--light);
+	color: var(--medium);
+	background: var(--light);
+	box-shadow: 0 0 0 5px var(--light);
+	width: 120px;
+	height: 120px;
+	margin: 5px;
 }
 
 #canvasContainer {
@@ -49,4 +52,6 @@ canvas.checkered {
 	line-height: 20px;
 	border-bottom-left-radius: 7px;
 	font-family: mono;
+  pointer-events: none;
+  opacity: 0.9;
 }

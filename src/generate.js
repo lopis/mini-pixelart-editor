@@ -62,13 +62,7 @@ const getPaletteString = () => {
   return colorPalette.join('').replaceAll('#', '')
 }
 
-generate.addEventListener('click', () => {
-  if (hasUnsavedChanged) {
-    alert('You seem to have forgotten to save your changes.');
-    return
-  }
-  generateCode()
-})
+
 
 help.addEventListener('click', () => {
   helpModal.classList.remove('hidden')

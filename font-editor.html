@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Font Editor</title>
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="src/font/font.css">
+  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👾%3C/text%3E%3C/svg%3E" type="image/x-icon">
+</head>
+<body>
+  <div class="library">
+    <h2>
+      Palette
+    </h2>
+    <div class="palette" id="palette">
+      <label data-color="1" class="label">
+        <span class="color-swatch">
+          <input type="color" value="#1c130a">
+        </span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color" checked>
+          <span class="hotkey">
+            <code>1</code>
+            <code>q</code>
+          </span>
+        </label>
+      </label>
+      <label data-color="0" class="label">
+        <span class="color-swatch checkered"></span>
+        <label class="radio-label">
+          <input type="radio" name="brush-color">
+          <span class="hotkey">
+            <code>0</code>
+            <code>c</code>
+          </span>
+        </label>
+      </label>
+    </div>
+    <h2>Saved projects</h2>
+    <div class="actions">
+      <button id="save">
+        Save
+      </button>
+    </div>
+    <div id="iconsList"></div>
+  </div>
+  <div class="canvas">
+    <div class="canvas-size">
+      <div>
+        <div id="indicator"></div>
+        <input id="filename" type="text" value="My Font" required>
+      </div>
+      <div>
+        <label for="canvas-size">
+          Canvas Size: <span id="size">8</span>
+        </label>
+      </div>
+      <input id="canvasSize" name="canvas-size" type="range" step="1" value="5" min="4" max="7">
+    </div>
+    <div class="preview">
+      <input id="previewInput" type="text" value="#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^">
+      <canvas id="preview" height="5" width="360"></canvas>
+    </div>
+    <div id="canvasContainer">
+    </div>
+  </div>
+  <div class="toolbar">
+    <button id="generate">Generate code (soon)</button>
+    <button id="help">About</button>
+    <a href="index.html">Home</a>
+  </div>
+  <div id="codeModal" class="hidden">
+    <div class="overlay"></div>
+    <div class="modal">
+      <h2>Generated Code</h2>
+      <pre id="generatedCode"></pre>
+      <div id="closeButton">✕</div>
+      <canvas id="testCanvas" class="checkered" title="Test Example"></canvas>
+    </div>
+  </div>
+  <div id="helpModal" class="hidden">
+    <div class="overlay"></div>
+    <div class="modal">
+      <h2>Mini Pixelart Editor</h2>
+      <div id="closeButton">✕</div>
+      <p>
+        This font editor was created to help design pixel fonts and
+        compress them into a short string.
+        This method can produce "images" that are smaller
+        that regular image files.
+      </p>
+      <p>
+        This tool was created for the js13k game jam but can technically
+        be used for any purpose, though there are probably better
+        tools for that job.
+      </p>
+      <p>
+        Use the <code>Save</code> button to save your fonts to the browser
+        localstorage. When you're ready to export your work,
+        you can press <code>Generate code</code> to create a code snippet
+        that renders your font. A small canvas in the corner of
+        the code dialog allows to confirm that the code is working.
+      </p>
+      <p>
+        Feel free to open any issues or pull requests over on github.
+      </p>
+      <p>
+        <a href="https://github.com/lopis/mini-pixelart-editor" target="_blank">
+          https://github.com/lopis/mini-pixelart-editor
+        </a>
+      </p>
+    </div>
+  </div>
+  <script src="src/index.js"></script>
+  <script src="src/localstorage.js"></script>
+  <script src="src/font/storage.js"></script>
+  <script src="src/font/preview.js"></script>
+  <script src="src/font/index.js"></script>
+  <script src="src/generate.js"></script>
+  <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
+</body>
+</html>
