@@ -98,37 +98,6 @@ const initControls = (state) => {
     savePalette();
   })
   
-  document.addEventListener('keydown', ({ key, target }) => {
-    if (target.id === 'filename') return
-  
-    const keystr = 'cqweasdzx'
-    let color = isNaN(key) ? keystr.indexOf(key) : parseInt(key)
-  
-    if (Number.isInteger(color) && color >= 0 && color <= 8) {
-      const colorControl = document.querySelector(`[data-color="${color}"]`)
-      if (!colorControl.classList.contains('hidden')) {
-        selectedColor = color
-        colorControl.querySelector('[name="brush-color"]').checked = true
-      }
-    }
-  
-    if (key == 'Escape') {
-      codeModal.classList.add('hidden')
-      helpModal.classList.add('hidden')
-    }
-  })
-  
-  palette.addEventListener('input', event => {
-    if (event.target.name === 'brush-color') {
-      selectedColor = event.target.parentElement.parentElement.dataset.color
-    } else {
-      const color = event.target.dataset.color
-      colorPalette[color] = event.target.value
-      updatePalette()
-      savePalette()
-    }
-  })
-  
   if (typeof clear !== 'undefined') {
     clear.addEventListener('click', () => {
       updateGrid(canvas, state.canvasGrid)
@@ -231,3 +200,50 @@ const updateSelectedColor = () => {
   selectedColor = document.querySelector('.palette input[type=radio]:checked')
   .parentElement.parentElement.dataset.color
 }
+
+document.addEventListener('click', event => {
+  if (event.target.id === 'closeButton') {
+    codeModal.classList.add('hidden')
+    helpModal.classList.add('hidden')
+  }
+})
+
+document.addEventListener('keydown', ({ key, target }) => {
+  if (target.id === 'filename') return
+
+  const keystr = 'cqweasdzx'
+  let color = isNaN(key) ? keystr.indexOf(key) : parseInt(key)
+
+  if (Number.isInteger(color) && color >= 0 && color <= 8) {
+    const colorControl = document.querySelector(`[data-color="${color}"]`)
+    if (!colorControl.classList.contains('hidden')) {
+      selectedColor = color
+      colorControl.querySelector('[name="brush-color"]').checked = true
+    }
+  }
+
+  if (key == 'Escape') {
+    codeModal.classList.add('hidden')
+    helpModal.classList.add('hidden')
+  }
+})
+
+palette.addEventListener('input', event => {
+  if (event.target.name === 'brush-color') {
+    selectedColor = event.target.parentElement.parentElement.dataset.color
+  } else {
+    const color = event.target.dataset.color
+    colorPalette[color] = event.target.value
+    updatePalette()
+    savePalette()
+  }
+})
+
+const setCanvasSize = (size) => {
+  canvasSize.value = size
+  canvasSize.dispatchEvent(new Event('update'))
+}
+
+help.addEventListener('click', () => {
+  helpModal.classList.remove('hidden')
+})

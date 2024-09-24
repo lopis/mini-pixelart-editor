@@ -61,16 +61,3 @@ const getPaletteString = () => {
 
   return colorPalette.join('').replaceAll('#', '')
 }
-
-
-
-help.addEventListener('click', () => {
-  helpModal.classList.remove('hidden')
-})
-
-document.addEventListener('click', event => {
-  if (event.target.id === 'closeButton') {
-    codeModal.classList.add('hidden')
-    helpModal.classList.add('hidden')
-  }
-})

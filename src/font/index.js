@@ -31,10 +31,10 @@ const fontEditorInit = () => {
   }
 
   previewCtx = preview.getContext('2d')
-  setDefaultFont()
 }
 
 fontEditorInit()
+setFirstSavedFont() || setDefaultFont()
 updateSelectedColor()
 updatePalette()
 renderSavedFiles()

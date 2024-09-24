@@ -34,8 +34,7 @@ const initImageStorageControls = ({canvasGrid}) => {
       let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
       canvasGrid.splice(0, canvasGrid.length, ...data[key])
       filename.value = key
-      canvasSize.value = canvasGrid.length
-      canvasSize.dispatchEvent(new Event('update'))
+      setCanvasSize(canvasGrid.length)
     } else if (event.target.classList.contains('icon-delete')) {
       const key = event.target.parentElement?.dataset?.key
       const reply = confirm(`Delete saved project "${key}"?`)
@@ -104,8 +103,7 @@ const loadFirstFile = ({canvasGrid}) => {
     const key = Object.keys(data)[0]
     canvasGrid.splice(0, canvasGrid.length, ...data[key])
     filename.value = key
-    canvasSize.value = canvasGrid.length
-    canvasSize.dispatchEvent(new Event('update'))
+    setCanvasSize(canvasGrid.length)
   }
 }
 

@@ -1,7 +1,7 @@
 const setDefaultFont = () => {
   '6v7ic,2rwzo,6nvic,58jgo,55eyo,jz6bo,933m7,3ugt8,34ao,7k,b28,m0,20o0o,9a7vy,jbmjj,jf63j,ivhmn,etrs7,ju8e7,jalrz,jeyks,jwdj3,jwdlv,2t8g,2t8s,34yo,lskg,m2yo,jf4lo,jysjy,98ruh,j8htq,9v7zj,j8d32,ju78f,ju8t4,9ul2n,g44e1,jykrj,jewdq,g4rbt,fgsgv,hha5t,g6xgz,98rou,j8d7c,98uwe,j8d7d,9xgxq,jykqs,g3zn2,g3z9g,b1ipn,h4qu3,c8oz2,jhyfz,,,,'
   .split(',')
-  .map(n => parseInt(n, 36).toString(2).padStart(Math.pow(canvasSize.value, 2), '0').split('').map(v => v == '1'))
+  .map(n => parseInt(n, 36).toString(2).padStart(25, '0').split('').map(v => v == '1'))
   .forEach((letterData, index) => {
     const gridSize = 5;
     const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
@@ -15,8 +15,18 @@ const setDefaultFont = () => {
   })
 }
 
+const getFontString = () => {
+  return states.map(
+    ({canvasGrid}) => (
+      parseInt(
+        canvasGrid.flat().map(v => v ? 1 : 0).join(''), 2
+      ) || ''
+    ).toString(36) || ''
+  ).join(',')
+}
+
 const updateFontPreview = () => {
-  const fontString = states.map(({canvasGrid}) => (parseInt(canvasGrid.flat().map(v => v ? 1 : 0).join(''), 2) || '').toString(36) || '').join(',')
+  const fontString = getFontString()
   const text = previewInput.value
 
   if (text.length === 0) {
