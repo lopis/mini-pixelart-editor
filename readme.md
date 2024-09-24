@@ -2,6 +2,9 @@
 
 ## A mini editor for sprites and fonts
 
+[![Image Editor](images/screenshot_image_editor_small.png)](images/screenshot_image_editor.png)
+[![Image Editor](images/screenshot_font_editor_small.png)](images/screenshot_font_editor.png)
+
 The goal of this tool started as a way for me to create pixel art with a restricted palette and convert it to a string format that I could use in my JS13K games.
 
 The original inspiration for this project came from a similar tool made by @xem called [miniPixelArt](https://xem.github.io/miniPixelArt/). I wanted to extend its capabilities and make it more usable, as well as make it export more readable code.
