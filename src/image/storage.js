@@ -101,9 +101,11 @@ const loadFirstFile = ({canvasGrid}) => {
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE))
   if (data && Object.keys(data).length > 0) {
     const key = Object.keys(data)[0]
-    canvasGrid.splice(0, canvasGrid.length, ...data[key])
-    filename.value = key
-    setCanvasSize(canvasGrid.length)
+    setCanvasSize(data[key].length)
+    requestAnimationFrame(() => {
+      canvasGrid.splice(0, canvasGrid.length, ...data[key])
+      filename.value = key
+    })
   }
 }
 

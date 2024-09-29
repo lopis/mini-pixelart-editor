@@ -42,7 +42,7 @@ const loadFont = (key) => {
       state.canvasGrid = firstFont[i]
       console.log('update canvas', state);
       requestAnimationFrame(() => {
-        updateCanvas(state)
+        renderCanvas(state)
         preview.height = canvasSize.value
         updateFontPreview()
       });

@@ -23,7 +23,7 @@ const initControls = (state) => {
     size.innerHTML = canvasSize.value
     cellSize = ~~(HEIGHT / canvasSize.value)
     updateGrid(state, true)
-    updateCanvas(state)
+    renderCanvas(state)
   }
 
   canvasSize.addEventListener('input', onCanvasSizeChange)
@@ -53,7 +53,7 @@ const initControls = (state) => {
   
   state.canvas.addEventListener('mouseout', () => {
     state.selectedCell = []
-    updateCanvas(state)
+    renderCanvas(state)
   })
   
   state.canvas.addEventListener('mousedown', (event) => {
@@ -168,7 +168,7 @@ const drawGrid = (state) => {
   }
 }
 
-const updateCanvas = (state) => {
+const renderCanvas = (state) => {
   state.ctx.clearRect(0, 0, state.canvas.height, state.canvas.width)
   drawGrid(state)
 }
