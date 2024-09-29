@@ -14,6 +14,10 @@ const editorInit = (state) => {
   cellSize = Math.round(HEIGHT / canvasSize.value)
 }
 
+document.addEventListener('mouseup', () => {
+  mouseDown = false
+})
+
 const initControls = (state) => {
   const onCanvasSizeChange = () => {
     size.innerHTML = canvasSize.value
@@ -49,6 +53,7 @@ const initControls = (state) => {
   
   state.canvas.addEventListener('mouseout', () => {
     state.selectedCell = []
+    updateCanvas(state)
   })
   
   state.canvas.addEventListener('mousedown', (event) => {
@@ -61,10 +66,6 @@ const initControls = (state) => {
   
   state.canvas.addEventListener('contextmenu', (event) => {
     event.preventDefault();
-  })
-  
-  state.canvas.addEventListener('mouseup', () => {
-    mouseDown = false
   })
   
   window.colorFormat?.addEventListener('change', event => {
