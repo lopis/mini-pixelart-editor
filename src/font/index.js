@@ -20,11 +20,11 @@ const fontEditorInit = () => {
     editorInit(state)
     initControls(state)
     updateGrid(state, true)
-    updateCanvas(state);
+    renderCanvas(state);
 
     ['click', 'mousemove', 'mouseout'].forEach(e => {
       state.canvas.addEventListener(e, () => {
-        updateCanvas(state)
+        renderCanvas(state)
         updateFontPreview()
       });
     })
