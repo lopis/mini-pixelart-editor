@@ -32,9 +32,10 @@ const initImageStorageControls = ({canvasGrid}) => {
     const key = event.target?.dataset?.key
     if (key) {
       let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_SAVE) || '{}')
+      setCanvasSize(data[key].length)
       canvasGrid.splice(0, canvasGrid.length, ...data[key])
       filename.value = key
-      setCanvasSize(canvasGrid.length)
+      renderCanvas(state)
     } else if (event.target.classList.contains('icon-delete')) {
       const key = event.target.parentElement?.dataset?.key
       const reply = confirm(`Delete saved project "${key}"?`)
