@@ -101,7 +101,8 @@ const initControls = (state) => {
   
   if (typeof clear !== 'undefined') {
     clear.addEventListener('click', () => {
-      updateGrid(canvas, state.canvasGrid)
+      updateGrid(state)
+      renderCanvas(state)
       setUnsavedChanges(true)
     })
     up.addEventListener('click', () => {
